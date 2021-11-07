@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Blog</title>
+    {{!-- DO NOT FORGET to PURGE all unused CSS before deployment --}}
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <nav class="flex justify-between p-10">
+            <div id="logo-icon"></div>
+            {{!-- Optimization :: Partial Implementation --}}
+            {{#if logged_in}}
+            <ul class="dub-logout list-none overflow-hidden">
+                <li class="dub-logout-inner relative transform transition duration-700 ease-in-out">
+                    <button class="py-3 px-6 font-mono bg-yellow text-blue-600"></button>
+                </li>
+            </ul>
+            {{/if}}
+        </nav>
+        <h1 class="font-mono text-6xl text-center uppercase py-16">
+            uNaNalyzed 
+        </h1>
+    </header>
+
+        <main>
+            {{{body}}}
+        </main>
+        
+{{#if logged_in}}
+<script src="/js/logout.js"></script>
+{{/if}}
+</body>
+</html>

@@ -1,0 +1,12 @@
+{{!-- <div class="flex items-center justify-center">
+    <div class="flex justify-between bg-white mx-8 py-4">
+        <h3 class="text-4xl font-sans uppercase">Article Title</h3>
+         --}}
+         {{#each users as |user| }}
+        <small class="text-xsm font-mono">{{user.name}} | {{user.post_date}}</small>
+        <article class="text-left font-sans leading-6">{{user.post_body}}></article>
+        {{/each}}
+
+
+    {{!-- </div>
+</div> --}}
