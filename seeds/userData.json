@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Ian",
+        "email": "ianfullstack@ian.me",
+        "pass": "rootadmin"
+    },
+    {
+        "name": "Jassica",
+        "email": "jassicaCouldBe@aname.com",
+        "pass": "pass9876"
+    },
+    {
+        "name": "Boofany",
+        "email": "boofany@badontheears.com",
+        "pass": "pass8765"
+    },
+    {
+        "name": "AshlindaSueAnn",
+        "email": "existsOnly@thesouth",
+        "pass": "pass7654"
+    }
+]
