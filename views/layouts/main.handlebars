@@ -12,6 +12,27 @@
     <header>
         <nav class="flex justify-between p-10">
             <div id="logo-icon"></div>
+            <div id="form-wrap">
+                <span id="exit-form">X</span>
+                <form id="login-form" class="overflow-hidden fixed justify-center items-center inset-0 duration-500 ease-in">
+                    <h4 class="font-mono text-center text-4xl">Login</h4>
+                    <label class="text-sm">
+                        <input id="login-email" type="text" class="placeholeder-gray-500 py-4" placeholder="janedoe@email.com">
+                    </label>
+                    <label class="text-sm">
+                        <input id="login-pass" type="text" class="placeholeder-gray-500 py-4" placeholder="password">
+                    </label>
+                    <label>
+                        <button id="login" type="submit" class="bg-blue-500 text-white">Login</button>
+                    </label>
+                </form>
+                        
+                    
+
+                </form>
+
+            </div>
+            
             {{!-- Optimization :: Partial Implementation --}}
             {{#if logged_in}}
             <ul class="dub-logout list-none overflow-hidden">
