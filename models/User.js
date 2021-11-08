@@ -27,7 +27,7 @@ User.init(
             allowNull: false, 
             unique: true,
             validate: {
-                isEmail: true
+                isEmail: true,
             },
         },
         pass: {
@@ -41,9 +41,9 @@ User.init(
     // Table Options
     {
         hooks: {
-            beforeCreate: async (hashUser) => {
-                hashUser.pass = await bcrypt.hash(hashUser.pass, 10);
-                return hashUser;
+            beforeCreate: async (newUserData) => {
+                newUserData.pass = await bcrypt.hash (newUserData.pass, 10);
+                return newUserData;
             },
         },
         sequelize,
