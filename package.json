@@ -4,7 +4,9 @@
   "description": "CMS-style blog developed using MVC paradigms",
   "main": "server.js",
   "scripts": {
-    "build:css": "tailwind build public/src/style.css -o public/css/styles.css"
+    "build:css": "tailwind build public/src/style.css -o public/css/styles.css",
+    "seeds": "node seeds/seed.js",
+    "server": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -28,7 +30,7 @@
   },
   "homepage": "https://github.com/IanClark-fullStack/tech-blog#readme",
   "dependencies": {
-    "bcrypt": "^5.0.0",
+    "bcrypt": "^5.0.1",
     "connect-session-sequelize": "^7.0.4",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",

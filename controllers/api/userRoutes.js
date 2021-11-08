@@ -1,4 +1,5 @@
-
+const router = require('express').Router();
+const { User } = require('../../models');
 
 
 /*  
@@ -32,3 +33,5 @@ The first Route Handler Definition
                 })
 
 */
+
+module.exports = router;

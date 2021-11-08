@@ -12,7 +12,7 @@
     <header>
         <nav class="flex justify-between p-10">
             <div id="logo-icon"></div>
-            <div id="form-wrap">
+            <div id="form-wrap" class="absolute opacity-0 w-2/3">
                 <span id="exit-form">X</span>
                 <form id="login-form" class="overflow-hidden fixed justify-center items-center inset-0 duration-500 ease-in">
                     <h4 class="font-mono text-center text-4xl">Login</h4>
@@ -26,11 +26,7 @@
                         <button id="login" type="submit" class="bg-blue-500 text-white">Login</button>
                     </label>
                 </form>
-                        
-                    
-
-                </form>
-
+                <button id="open-form">Login</button>
             </div>
             
             {{!-- Optimization :: Partial Implementation --}}

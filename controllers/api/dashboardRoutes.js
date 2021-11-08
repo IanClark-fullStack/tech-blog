@@ -1,3 +1,5 @@
+const router = require('express').Router();
+const { User } = require('../../models');
 // GET - Find All POSTS from Current User 
 
 // POST - Create new blogpost Route Handler
@@ -14,3 +16,4 @@
 
 // DELETE - Destroy a Post Route Handler
 
+module.exports = router;

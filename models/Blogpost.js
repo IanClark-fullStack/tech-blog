@@ -1,5 +1,4 @@
-const { Model, Datatypes, NOW } = require('sequelize');
-const { Blogpost } = require('.');
+const { Model, DataTypes, NOW } = require('sequelize');
 const sequelize = require('../config/connection');
 
 class Blogpost extends Model {}
@@ -7,29 +6,29 @@ class Blogpost extends Model {}
 Blogpost.init(
     {
         id: {
-            type: Datatypes.INTEGER, 
+            type: DataTypes.INTEGER, 
             allowNull: false,
             primaryKey: true,
             autoIncrement: true
         },
         title: {
-            type: Datatypes.STRING(70),
+            type: DataTypes.STRING(70),
             allowNull: false
         },
         post_body: {
-            type: Datatypes.STRING(3500),
+            type: DataTypes.STRING(3500),
             allowNull: false
         },
         // inserting a UTC Date object into DATEONLY will cut timezone off, 
         date: {
-            type: Datatypes.DATE,
+            type: DataTypes.DATE,
             defaultValue: NOW,
             validate: {
                 isDate: true,
             },
         },
         user_id: {
-            type: Datatypes.INTEGER,
+            type: DataTypes.INTEGER,
             references: {
                 model: 'user',
                 key: 'id'

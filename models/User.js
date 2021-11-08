@@ -1,26 +1,29 @@
-const { Model, Datatypes } = require('sequelize');
-const bcrypt = require('bcyrpt');
+const { Model, DataTypes } = require('sequelize');
+const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
 class User extends Model {
     // Include the compareSync bcrypt functionality. 
-    
+    comparePassword(stringPassword) {
+        // Return the boolean value of invoking bcyrpt method to compare hashed-version w/ string v. 
+        return bcrypt.compareSync(stringPassword, this.pass);
+    }
 }
 
 User.init(
     {
         id: {
-            type: Datatypes.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull: false, 
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
         },
         name: {
-            type: Datatypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false, 
         },
         email: {
-            type: Datatypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false, 
             unique: true,
             validate: {
@@ -28,7 +31,7 @@ User.init(
             },
         },
         pass: {
-            type: Datatypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [8],

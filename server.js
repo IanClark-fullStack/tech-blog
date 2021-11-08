@@ -5,7 +5,7 @@ const exphbs = require('express-handlebars');
 // All routes will be handled by conroller folder
 const routes = require('./controllers');
 // All helpers will be handled by utils folder
-const helpers = require('./utils');
+// const helpers = require('./utils');
 // Sequalize will be setup using the config folder
 const sequelize = require('./config/connection');
 
@@ -28,24 +28,26 @@ const sess = {
     secret: 'admin',
     cookie: {}, 
     resave: false,
-    saveUnitialized: true, 
+    saveUninitialized: true, 
     store: new SequelizeStore({
         db: sequelize
     })
 };
 
 // Global Middleware 
-app.use(session(sess)); // Express session and store 
+app.use(session(sess)); // Express session and store
+
 app.engine('handbars', hbs.engine); // use hbs
 app.set('view engine', 'handlebars'); // Set the views 
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(routes);
+app.use(routes); // Express will default to routes folder
 
 sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => console.log(`Application Listening at ${PORT}`));
+    app.listen(PORT, () => console.log('Application Listening at' + PORT));
 });
 
 
