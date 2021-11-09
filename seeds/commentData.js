@@ -1,3 +1,5 @@
+const { Comment } = require('../models');
+const commentData =
 [
     {
         "content": "Bugs or features",
@@ -19,4 +21,8 @@
         "user_id": 1,
         "blogpost_id": 4
     }
-]
+];
+
+const seedComments = () => Comment.bulkCreate(commentData);
+
+module.exports = seedComments;

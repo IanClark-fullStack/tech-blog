@@ -9,7 +9,6 @@ class User extends Model {
         return bcrypt.compareSync(stringPassword, this.pass);
     }
 }
-
 User.init(
     {
         id: {
@@ -42,8 +41,12 @@ User.init(
     {
         hooks: {
             beforeCreate: async (newUserData) => {
-                newUserData.pass = await bcrypt.hash (newUserData.pass, 10);
+                newUserData.pass = await bcrypt.hash(newUserData.pass, 10);
                 return newUserData;
+            },
+            beforeUpdate: async (updatedUserData) => {
+                newUserData.pass = await bcrypt.hash(updatedUserData.pass, 10);
+                return updatedUserData;
             },
         },
         sequelize,

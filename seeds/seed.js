@@ -1,25 +1,31 @@
 const sequelize = require('../config/connection');
-const { User, Blogpost, Comment } = require('../models');
 // Bring in JSON Data 
-const userSeedData = require('./userData.json');
-const blogPostSeedData = require('./blogPost.json');
-const commentSeedData = require('./commentData.json');
+const seedUsers = require('./userData');
+const seedPosts = require('./postData');
+const seedComments = require('./commentData');
+const {User, Comment, Post} = require('../models');
 
 const seedDb = async () => {
     // Await returned value from invoking sequelize promise based version of drop table if exists 
     await sequelize.sync({ force: true });
-    // Await return value of sequelize bulkCreate using User model
-    const newUsers = await User.bulkCreate(userSeedData, {
-        individualHooks: true,
-        returning: true,
-    });
-     // Await return value of sequelize bulkCreate using Blogpost model 
-    const blogPostSeedsAdded = await Blogpost.bulkCreate(blogPostSeedData);
-    // Await return value of sequelize bulkCreate using Comment model 
-    const commentSeedsAdded = await Comment.bulkCreate(commentSeedData);
+
+    await seedUsers();
+    await seedPosts();
+    await seedComments();
     // In case an error arises, tell node not to exit 
     process.exit(0);
 };
+
+// const seedDb = async () => {
+    
+//     // Await return value of sequelize bulkCreate using User model
+    
+//      // Await return value of sequelize bulkCreate using Blogpost model 
+//     const blogPostSeedsAdded = await Blogpost.bulkCreate(blogPostSeedData);
+//     // Await return value of sequelize bulkCreate using Comment model 
+//     const commentSeedsAdded = await Comment.bulkCreate(commentSeedData);
+    
+// };
 
 seedDb(); // SeedDb invocation 
 

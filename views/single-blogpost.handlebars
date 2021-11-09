@@ -1,0 +1,24 @@
+<div class="w-1/3">
+    <div id="post-header" class="justify-center items-center">
+        <h4 class="font-mono text-center text-4xl">Login: rendered by homeRoutes</h4>
+        <h4 class="font-mono text-center text-4xl"><a href="/blogpost/{{blogpost.id}}"</a>{{blogpost.title}}</a></h4>
+        <small>By: {{blogpost.user.name}} at {{blogpost.date}}</small>
+    </div>
+    <div class="text-md">
+        <p class="leading-md">
+            {{blogpost.post_body}}
+        </p>
+    </div>
+    <form class="py-16">
+        <label class="text-sm">
+            <textarea id="post-comment" class="placeholeder-gray-500 py-4" placeholder="comment here">
+        </label>
+        <label>
+            <button id="official-login" type="submit" class="bg-blue-500 text-white">Login</button>
+        </label>
+    </form>
+
+    {{!-- To Do ::: Insert Partial For Comments Display --}}
+</div>
+
+{{!-- TODO ::: <script src="/js/comment.js"></script> --}}

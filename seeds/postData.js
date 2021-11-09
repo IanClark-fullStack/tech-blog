@@ -1,3 +1,6 @@
+const { Blogpost } = require('../models');
+
+const postData = 
 [
     {
        "title": "Seeded Blog Posts Explained",
@@ -19,4 +22,8 @@
        "post_body": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Nullam quis risus eget urna mollis ornare vel eu leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
        "user_id": 4       
     }
-]
+];
+
+const seedPosts = () => Blogpost.bulkCreate(postData);
+
+module.exports = seedPosts;

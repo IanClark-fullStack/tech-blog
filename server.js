@@ -37,7 +37,7 @@ const sess = {
 // Global Middleware 
 app.use(session(sess)); // Express session and store
 
-app.engine('handbars', hbs.engine); // use hbs
+app.engine('handlebars', hbs.engine); // use hbs
 app.set('view engine', 'handlebars'); // Set the views 
 
 app.use(express.json());
