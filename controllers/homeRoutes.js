@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
 
         // Res.render the TODO : ALTERNATE PAGE TO DISPLAY DASHBOARD. 
         res.render('homepage', { blogArray, logged_in: req.session.logged_in});
-            // Pass logged in flag 
+        // Pass logged in flag 
     } catch (err) {
         res.status(500).json(err);
     }
@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
 
 
 // GET A USERS POSTS - Find by Pk 
-router.get('/blogpost/:id', userAuth, async (req, res) => {
+router.get('/blogpost/:id', async (req, res) => {
     try {
         const blogpostData = await Blogpost.findOne({
             where: {id: req.params.id},
@@ -46,23 +46,21 @@ router.get('/blogpost/:id', userAuth, async (req, res) => {
     }
 });
 
+// Part 2 of the Login link, 
 router.get('/login', (req, res) => {
     if (req.session.logged_in) {
-        res.redirect('/dashboard');
+        res.redirect('/dashboard'); 
         return;
     }
-    res.render('login');
+    res.render('login'); // Render login.handlebars in MAIN
 });
-
+// Step 4 :: Main.handlebars Login link > homeRoutes /login route > Renders Login Form > Or signup link (routes back) 
 router.get('/signup', (req, res) => {
     if (req.session.logged_in) {
         res.redirect('/dashboard');
         return;
     }
-    res.render('signup');
+    res.render('signup'); // Render signup.handlebars in MAIN
 });
-
-
-
 
 module.exports = router;

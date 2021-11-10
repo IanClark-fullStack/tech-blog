@@ -1,16 +1,15 @@
-<div id="form-wrap" class="w-2/3">
+<div id="form-wrapper" class="w-2/3">
     <form id="login-form" class="justify-center items-center">
-        <h4 class="font-mono text-center text-4xl">Login: rendered by homeRoutes</h4>
-        <label class="text-sm">
+        <h4 class="font-mono text-center text-2xl">Sent from home routes, when !logged_in</h4>
+        <label class="text-sm">email</label>
             <input id="login-email" type="text" class="placeholeder-gray-500 py-4" placeholder="janedoe@email.com">
-        </label>
-        <label class="text-sm">
+        <label class="text-sm">pass</label>
             <input id="login-pass" type="text" class="placeholeder-gray-500 py-4" placeholder="password">
-        </label>
-        <label>
+        <label>Press submit</label>
             <button id="official-login" type="submit" class="bg-blue-500 text-white">Login</button>
-        </label>
     </form>
+    <!-- Send back to home routes and follow the signup route --> 
+    <a href="/signup">|| sign up</a>
 </div>
 
 <script src="/js/login.js"></script>

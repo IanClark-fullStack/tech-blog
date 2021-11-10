@@ -11,17 +11,19 @@
 <body>
     <header>
         <nav class="flex justify-between p-10">
-            
             {{!-- Optimization :: Partial Implementation --}}
-            <ul class="dub-logout list-none">
-                <li class="dub-logout-inner">
+            <ul class="list-none">
+                <li>
                     <a href="/">
-                        <button class="py-3 px-6 font-mono bg-yellow text-blue-600">
-                            Home
-                        </button>
+                        <button class="py-3 px-6 font-mono bg-yellow text-blue-600">Home</button>
                     </a>
                 </li>
-            {{#if logged_in}}
+            {{#unless logged_in}}
+                <li> 
+                    <!-- Handled by homeRoutes, where the response is to render the login/signup handlebars file to the page -->
+                    <a href="/login"><button class="py-3 px-6 font-mono bg-yellow text-blue-600">Login</button></a>
+                </li>
+            {{/unless}}
                 <li>
                     {{!-- Dash Needs Event Handler and Route --}}
                     <a href="/dashboard">
@@ -34,9 +36,7 @@
             {{else}}
             
                 <li>
-                    <a href="/login">
-                        <button class="py-3 px-6 font-mono bg-yellow text-blue-600">Login</button>
-                    </a>
+                    {{login}}
                 </li>
                 <li>
                     <a href="/signup">
@@ -56,6 +56,6 @@
     </main>
         
 <script src="/js/logout.js"></script>
-<script src="/js/home.js"></script>
+{{!-- <script src="/js/home.js"></script> --}}
 </body>
 </html>

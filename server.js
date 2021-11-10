@@ -1,19 +1,18 @@
 const path = require('path');
+// const bodyParser = require('body-parser')
 const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 // All routes will be handled by conroller folder
 const routes = require('./controllers');
 // All helpers will be handled by utils folder
-// const helpers = require('./utils');
+const helpers = require('./utils/helpers');
+
+
 // Sequalize will be setup using the config folder
 const sequelize = require('./config/connection');
-
-
-
 // Sequelize will have a store created using express-session npm package.
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-
 
 // Initialize a new instance of the express server
 const app = express();
@@ -41,14 +40,20 @@ app.engine('handlebars', hbs.engine); // use hbs
 app.set('view engine', 'handlebars'); // Set the views 
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// app.use(bodyParser.json())
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes); // Express will default to routes folder
 
-sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => console.log('Application Listening at' + PORT));
+app.listen(PORT, () => {
+    console.log(`App listening on port ${PORT}!`);
+    sequelize.sync({ force: false });
 });
+
+// sequelize.sync({ force: false }).then(() => {
+//     app.listen(PORT, () => console.log('Application Listening at' + PORT));
+// });
 
 
 

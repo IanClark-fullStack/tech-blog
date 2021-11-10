@@ -1,0 +1,16 @@
+<div if="newpost-wrapper" class="flex w-2.3"> 
+    <h2>Create a new post</h2>
+    <form id="newpost-form">
+        <input id="newpost-title" type="hidden" name="blogpost_id" value="{{blogpost.id}}"/>
+        <div class="py-8">
+            <label>Blogpost Title</label>
+            <input type="text" name="blogpost-title">
+        </div>
+        <div class="py-8">
+            <label>Enter post below</label>
+            <textarea id="newpost-blog" name="blogpost-body"></textarea>
+        </div>
+        <button id="newpost-button" type="submit" class="bg-blue-500 text-white">Add Post</button>
+    </form>
+</div>
+<script src="/js/newpost.js"></script>
