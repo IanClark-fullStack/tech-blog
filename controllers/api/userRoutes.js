@@ -58,6 +58,25 @@ router.post('/login', async (req, res) => {
     }
 });
 
+router.delete('/:id', async (req, res) => {
+    try {
+        const endUser = await User.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+        if (!endUser) {
+            res.status(404).json({ message: 'No user found with this id' });
+            return;
+        }
+        res.json(endUser);
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
+
 router.post('/logout', (req, res) => {
     if (req.session.logged_in) {
         req.session.destroy(() => {
@@ -67,5 +86,6 @@ router.post('/logout', (req, res) => {
         res.status(404).end();
     }
 });
-        
+
 module.exports = router;
+

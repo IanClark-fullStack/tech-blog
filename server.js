@@ -6,7 +6,7 @@ const exphbs = require('express-handlebars');
 // All routes will be handled by conroller folder
 const routes = require('./controllers');
 // All helpers will be handled by utils folder
-const helpers = require('./utils/helpers');
+// const helpers = require('./utils/helpers');
 
 
 // Sequalize will be setup using the config folder

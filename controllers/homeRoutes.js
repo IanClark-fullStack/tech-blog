@@ -5,15 +5,28 @@ const userAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
     try {
         const userLoginData = await Blogpost.findAll({
-            include: [User],
+            attributes: ['id', 'title', 'post_body', 'date'], 
+            include: [
+                {
+                    model: Comment,
+                    attributes: ['date', 'content', 'user_id', 'blogpost_id'],
+                    include: {
+                        model: User,
+                        attributes: ['name']
+                    }
+                },
+                {
+                    model: User,
+                    attributes: ['name']
+                }
+            ]
         });
-        // Map over users array and serialize data 
-        const blogArray = userLoginData.map((el) => el.get({ plain: true}));
-        console.log(blogArray);
 
-        // Res.render the TODO : ALTERNATE PAGE TO DISPLAY DASHBOARD. 
-        res.render('homepage', { blogArray, logged_in: req.session.logged_in});
-        // Pass logged in flag 
+        // Map over users array and serialize data 
+        const blogposts = userLoginData.map(el => el.get({ plain: true}));
+        console.log(blogposts);
+        res.render('homepage', { blogposts, logged_in: req.session.logged_in });
+
     } catch (err) {
         res.status(500).json(err);
     }

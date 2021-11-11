@@ -2,15 +2,13 @@
 <div class="flex items-center justify-center">
     <div class="flex justify-between bg-white mx-8 py-4">
          <h3 class="text-4xl font-sans">SANITY</h3>
-        {{!-- <div class="flex items-center justify-center">
-    <div class="flex justify-between bg-white mx-8 py-4">
-        <h3 class="text-4xl font-sans uppercase">Article Title</h3>
-         --}}
-        {{#each blogArray as |user| }}
-        <h3 class="text-4xl font-sans">{{user.title}}</h3>
+       
+         {{posts}}
+        {{#each posts as |post| }}
+        <h3 class="text-4xl font-sans">{{post.title}}</h3>
         <h3 class="text-4xl font-sans">Extra Sanity</h3>
-        <small class="text-xsm font-mono">{{user.name}} | {{user.post_date}}</small>
-        <article class="text-left font-sans leading-6">{{user.post_body}}></article>
+        <small class="text-xsm font-mono">{{post.name}} | {{post.post_date}}</small>
+        <article class="text-left font-sans leading-6">{{post.post_body}}></article>
         {{/each}}
 
     {{!-- </div>

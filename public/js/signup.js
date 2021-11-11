@@ -11,7 +11,7 @@ const signupFormHandler = async function(e) {
         headers: { 'Content-Type': 'application/json' },
     });
     if (response.ok) {
-        document.location('/dashboard'); 
+        document.location.replace('/dashboard'); 
     } else {
         alert('Signup Sucks');
     }
