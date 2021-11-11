@@ -32,48 +32,93 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
+    res.render('login');
+});
 
-// GET A USERS POSTS - Find by Pk 
-router.get('/blogpost/:id', async (req, res) => {
+router.get('/signup', (req, res) => {
+    res.render('signup');
+});
+
+
+
+router.get('/post/:id', async (req, res) => {
     try {
-        const blogpostData = await Blogpost.findOne({
-            where: {id: req.params.id},
-            include: [
-                User, 
-                {
-                    model: Comment,
-                    include: [User],
+        const postData = await Blogpost.findOne({
+                where: {
+                    id: req.params.id
                 },
-            ],
-        });
-        // If we recieved the app data, serialize it and render a blogpost view, 
-        if (blogpostData) {
-            const singleBlogpost = blogpostData.get({ plain: true });
-            console.log(`found blog post for ${singleBlogpost.id}`);
-            res.render('single-blogpost', {blogpostData, logged_in: req.session.logged_in});
-        } else {
-            res.status(404).end();
+                attributes: [
+                    'id',
+                    'post_body',
+                    'title',
+                    'date'
+                ],
+                include: [{
+                    model: Comment, 
+                    attributes: ['id', 'content', 'blogpost_id', 'user_id', 'date'],
+                },
+                {
+                    model: User,
+                    attributes: ['name']
+                }
+            ]
+        })
+        if (!postData) {
+            res.status(404).json({ message: 'No post found with this id' });
+            return;
         }
+        const singlePost = postData.get({ plain: true });
+        res.render('single-post', { singlePost, logged_in: req.session.logged_in });
+
     } catch (err) {
+        console.log(err);
         res.status(500).json(err);
     }
 });
 
-// Part 2 of the Login link, 
-router.get('/login', (req, res) => {
-    if (req.session.logged_in) {
-        res.redirect('/dashboard'); 
-        return;
-    }
-    res.render('login'); // Render login.handlebars in MAIN
-});
-// Step 4 :: Main.handlebars Login link > homeRoutes /login route > Renders Login Form > Or signup link (routes back) 
-router.get('/signup', (req, res) => {
-    if (req.session.logged_in) {
-        res.redirect('/dashboard');
-        return;
-    }
-    res.render('signup'); // Render signup.handlebars in MAIN
+
+router.get('/posts-comments', async (req, res) => {
+    try {
+        const postData = await Blogpost.findOne({
+            where: {
+                id: req.params.id
+            },
+            attributes: [
+                'id',
+                'content',
+                'title',
+                'date'
+            ],
+            include: [{
+                    model: Comment,
+                    attributes: ['id', 'content', 'blogpost_id', 'user_id', 'date'],
+                    include: {
+                        model: User,
+                        attributes: ['name']
+                    }
+                },
+                {
+                    model: User,
+                    attributes: ['name']
+                }
+            ]
+        })
+        if (!postData) {
+            res.status(404).json({ message: 'No post found with this id' });
+            return;
+        }
+        const post = dbPostData.get({ plain: true });
+
+        res.render('posts-comments', { post, logged_in: req.session.logged_in });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }   
 });
 
 module.exports = router;

@@ -6,7 +6,7 @@
   "scripts": {
     "build:css": "tailwind build public/src/style.css -o public/css/styles.css",
     "seeds": "node seeds/seed.js",
-    "server": "node server.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
