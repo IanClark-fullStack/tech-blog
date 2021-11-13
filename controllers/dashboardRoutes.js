@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const sequelize = require('../config/connection');
 const { Blogost, User, Comment } = require('../models');
 const userAuth = require('../utils/auth');
 // GET - Find All POSTS from Current User 
@@ -17,7 +16,7 @@ const userAuth = require('../utils/auth');
 
 // DELETE - Destroy a Post Route Handler
 
-router.get('/', withAuth, (req, res) => {
+router.get('/', userAuth, (req, res) => {
     Blogpost.findAll({
             where: {
                 user_id: req.session.user_id
@@ -51,7 +50,7 @@ router.get('/', withAuth, (req, res) => {
             res.status(500).json(err);
         });
 });
-router.get('/edit/:id', withAuth, (req, res) => {
+router.get('/edit/:id', userAuth, (req, res) => {
     Blogpost.findOne({
             where: {
                 id: req.params.id

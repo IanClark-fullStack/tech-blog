@@ -1,4 +1,4 @@
-const sequelize = require('../../config/connection')
+
 const router = require('express').Router();
 const { User, Blogpost, Comment } = require('../../models');
 
@@ -61,86 +61,63 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-try {
+// try {
 
-} catch (err) {
+// } catch (err) {
 
-}
-router.post('/', (req, res) => {
-    try {
-        const userBirth = User.create({
-            name: req.body.name,
-            pass: req.body.pass
-        })
-        req.session.save(() => {
-            req.session.user_id = userBirth.id;
-            req.session.name = userBirth.name;
-            req.session.logged_in = true;
+// }
 
-            res.json(userBirth);
-        });
 
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
-    }
-});
+// router.post('/', (req, res) => {
+//     try {
+//         console.log(req.body);
+//         // const userBirth = User.create({
+//         //     name: req.body.name,
+//         //     pass: req.body.pass
+//         // })
+//         // req.session.save(() => {
+//         //     req.session.user_id = userBirth.id;
+//         //     req.session.name = userBirth.name;
+//         //     req.session.logged_in = true;
+
+//         //     res.json(userBirth);
+//         // });
+
+//     } catch (err) {
+//         console.log(err);
+//         res.status(500).json(err);
+//     }
+// });
 
 // SignUp Route Handler - Where /api/users === '/'
-router.post('/', async (req, res) => {
-    try {
-        const userBirth = await Blogpost.findAll({
-            attributes: [
-                'id',
-                'title',
-                'post_body',
-                'date'
-            ],
-            include: [{
-                    model: Comment,
-                    attributes: ['id', 'content', 'blogpost_id', 'user_id', 'date'],
-                    include: {
-                        model: User,
-                        attributes: ['name']
-                    }
-                },
-                {
-                    model: User,
-                    attributes: ['name']
-                }
-            ]
-        });
-        const posts = userBirth.map(post => post.get({ plain: true }));
-        res.render('homepage', { posts, loggedIn: req.session.loggedIn });
 
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
-    }
-});
 
 // Main.handlebars Login link > homeRoutes /login route > Renders Login Form > Or signup link routes back to homeRoutes /signup > renders Login Form with Event Listener attached > Fetch to /api/users/login
 // Where '/api/users/login === '/login'
-router.post('/login', async (req, res) => {
+router.post('/login/', async (req, res) => {
+    
     try {
+        console.log(req.body);
         const userData = await User.findOne({
             where: {
-                name: req.body.name
+                email: req.body.email
             }
-        })
+        });
         if (!userData) {
             res.status(400).json({ message: 'No user with that username!' });
             return;
         }
-        const validPassword = userData.checkPassword(req.body.pass);
+
+        const validPassword = await userData.checkPassword(req.body.pass);
 
         if (!validPassword) {
             res.status(400).json({ message: 'Incorrect password!' });
             return;
         }
+
         req.session.save(() => {
             req.session.user_id = userData.id;
-            req.session.name = userData.name;
+            req.session.email = userData.email;
             req.session.logged_in = true;
 
             res.json({ user: userData, message: 'You are now logged in!' });
