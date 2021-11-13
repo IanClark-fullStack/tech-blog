@@ -9,7 +9,7 @@ const routes = require('./controllers');
 // const helpers = require('./utils/helpers');
 
 
-// Sequalize will be setup using the config folder
+// Sequalize will setup using the config folder
 const sequelize = require('./config/connection');
 // Sequelize will have a store created using express-session npm package.
 const SequelizeStore = require('connect-session-sequelize')(session.Store);

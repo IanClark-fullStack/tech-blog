@@ -94,7 +94,7 @@ router.get('/:id', async (req, res) => {
 
 // Main.handlebars Login link > homeRoutes /login route > Renders Login Form > Or signup link routes back to homeRoutes /signup > renders Login Form with Event Listener attached > Fetch to /api/users/login
 // Where '/api/users/login === '/login'
-router.post('/login/', async (req, res) => {
+router.post('/login', async (req, res) => {
     
     try {
         console.log(req.body);
@@ -120,8 +120,9 @@ router.post('/login/', async (req, res) => {
             req.session.email = userData.email;
             req.session.logged_in = true;
 
-            res.json({ user: userData, message: 'You are now logged in!' });
+            
         });
+        res.json({ user: userData, message: 'You are now logged in!' });
     } catch (err) {
         console.log(err);
             res.status(500).json(err);

@@ -7,6 +7,8 @@ const loginFormEvent = async function(e) {
 // Only if both values exist
     // Then send the values to the server
         // Make a fetch request to userRoutes/login (Which will GET input values, compare hashedPass to Regular and send Flag back of LOGGED_IN)
+        console.log(email);
+        console.log(pass);
         const response = await fetch('/api/users/login', { 
             method: 'POST', // The method of the fetch request, is a POST,
             body: JSON.stringify({ // body content as JSON stringified Object {email, pass}
