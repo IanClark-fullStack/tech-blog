@@ -1,6 +1,11 @@
-<div class="card">
-    <div class="card-header">
-        <small class="text-xsm font-mono">Rendered through dash-posts partial</small>
-        <h4><a class="link" href="/dashboard/edit/{{id}}">{{title}}</a></h4>
-    </div>
-</div>
+<article class="text-left font-sans leading-6">
+    <h1 class="font-mono text-6xl text-center py-16"></h1>
+            
+    <small class="text-xsm font-mono">{{user.name}} | {{date}}</small>
+    <p>
+        {{post_body}}
+    </p>
+            
+    <small class="text-xsm font-mono">Rendered through dash-posts partial</small>
+    <h4><a class="link" href="/dashboard/edit/{{id}}">{{title}}</a></h4>
+</article>

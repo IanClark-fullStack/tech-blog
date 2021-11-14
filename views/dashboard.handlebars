@@ -1,14 +1,11 @@
 <h1>Rendering Dash</h1>
         {{#if blogposts.length}}
           <small class="text-xsm font-mono">Rendered if blogposts have a length</small>
+
             {{#each blogposts as |post| }}
-            <h3 class="text-4xl font-sans">{{user.title}}</h3>
-            <h3 class="text-4xl font-sans">Rendered by each blogposts</h3>
+            
             {{> dash-posts }}
-            <small class="text-xsm font-mono">{{user.name}} | {{user.post_date}}</small>
-            <article class="text-left font-sans leading-6">{{user.post_body}}>
-                <h1 class="font-mono text-6xl text-center py-16"></h1>
-            </article>
+            
             {{/each}}
-            {{!-- Optimization :: Partial Implementation --}}
-       
+         
+        {{/if}}

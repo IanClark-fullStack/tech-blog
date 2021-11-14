@@ -68,33 +68,33 @@ router.get('/:id', async (req, res) => {
 // }
 
 
-// router.post('/', (req, res) => {
-//     try {
-//         console.log(req.body);
-//         // const userBirth = User.create({
-//         //     name: req.body.name,
-//         //     pass: req.body.pass
-//         // })
-//         // req.session.save(() => {
-//         //     req.session.user_id = userBirth.id;
-//         //     req.session.name = userBirth.name;
-//         //     req.session.logged_in = true;
+router.post('/', (req, res) => {
+    try {
+        console.log(req.body);
+        // const userBirth = User.create({
+        //     name: req.body.name,
+        //     pass: req.body.pass
+        // })
+        // req.session.save(() => {
+        //     req.session.user_id = userBirth.id;
+        //     req.session.name = userBirth.name;
+        //     req.session.logged_in = true;
 
-//         //     res.json(userBirth);
-//         // });
+        //     res.json(userBirth);
+        // });
 
-//     } catch (err) {
-//         console.log(err);
-//         res.status(500).json(err);
-//     }
-// });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
 
 // SignUp Route Handler - Where /api/users === '/'
 
 
 // Main.handlebars Login link > homeRoutes /login route > Renders Login Form > Or signup link routes back to homeRoutes /signup > renders Login Form with Event Listener attached > Fetch to /api/users/login
 // Where '/api/users/login === '/login'
-router.post('/login', userAuth, async (req, res) => {
+router.post('/login', async (req, res) => {
     
     try {
         console.log(req.body);

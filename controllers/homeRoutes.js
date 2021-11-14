@@ -84,43 +84,43 @@ router.get('/post/:id', async (req, res) => {
 });
 
 
-router.get('/posts-comments', async (req, res) => {
-    try {
-        const postData = await Blogpost.findOne({
-            where: {
-                id: req.params.id
-            },
-            attributes: [
-                'id',
-                'content',
-                'title',
-                'date'
-            ],
-            include: [{
-                    model: Comment,
-                    attributes: ['id', 'content', 'blogpost_id', 'user_id', 'date'],
-                    include: {
-                        model: User,
-                        attributes: ['name']
-                    }
-                },
-                {
-                    model: User,
-                    attributes: ['name']
-                }
-            ]
-        })
-        if (!postData) {
-            res.status(404).json({ message: 'No post found with this id' });
-            return;
-        }
-        const post = dbPostData.get({ plain: true });
+// router.get('/posts-comments', async (req, res) => {
+//     try {
+//         const postData = await Blogpost.findOne({
+//             where: {
+//                 id: req.params.id
+//             },
+//             attributes: [
+//                 'id',
+//                 'content',
+//                 'title',
+//                 'date'
+//             ],
+//             include: [{
+//                     model: Comment,
+//                     attributes: ['id', 'content', 'blogpost_id', 'user_id', 'date'],
+//                     include: {
+//                         model: User,
+//                         attributes: ['name']
+//                     }
+//                 },
+//                 {
+//                     model: User,
+//                     attributes: ['name']
+//                 }
+//             ]
+//         })
+//         if (!postData) {
+//             res.status(404).json({ message: 'No post found with this id' });
+//             return;
+//         }
+//         const post = dbPostData.get({ plain: true });
 
-        res.render('posts-comments', { post, logged_in: req.session.logged_in });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
-    }   
-});
+//         res.render('posts-comments', { post, logged_in: req.session.logged_in });
+//     } catch (err) {
+//         console.log(err);
+//         res.status(500).json(err);
+//     }   
+// });
 
 module.exports = router;

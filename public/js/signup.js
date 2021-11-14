@@ -17,7 +17,7 @@ const signupFormHandler = async function(e) {
     // const entryStrings = JSON.stringify(entryData); 
     // console.log(entryStrings);
 
-    const response = await fetch('/api/users', 
+    const response = await fetch('/api/users/signup', 
     { // Where /api/users === '/'
         method: 'POST',
         body: JSON.stringify({
