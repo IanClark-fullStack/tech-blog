@@ -3,6 +3,22 @@ const { Blogpost, User, Comment } = require('../../models/');
 const sequelize = require('../../config/connection');
 const userAuth = require('../../utils/auth');
 
+router.post('/add', userAuth, async (req, res) => {
+    console.log(req.body);
+    try {
+        const newPostData = await Blogpost.create({
+           title: req.body.title,
+           post_body: req.body.post_body,
+           user_id: req.session.user_id 
+        });
+        console.log(newPostData)
+        res.json(newPostData);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+})
+
 // Find One Post 
 router.get('/:id', async (req, res) => {
     try {

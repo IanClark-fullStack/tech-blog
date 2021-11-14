@@ -2,10 +2,33 @@ const router = require('express').Router();
 const { Blogpost, User, Comment } = require('../models');
 const sequelize = require('../config/connection');
 const userAuth = require('../utils/auth');
+
+
 // GET - Find All POSTS from Current User 
+
+
 // POST - Create new blogpost Route Handler
     // Map Over the Users POSTS,
     // Push a new one to the array
+router.get('/add', async (req, res) => {
+    try {
+        res.render('new-post', { logged_in: true });
+
+        } catch (err) {
+            console.log(err);
+            res.status(500).json(err);
+        } 
+});
+
+router.get('/edit/:id', async (req, res) => {
+    try {
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
+
 
 
 // PUT - Update Exisiting blogpost Route Handler
