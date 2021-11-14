@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
         // Map over users array and serialize data 
         const blogposts = userLoginData.map(el => el.get({ plain: true}));
         console.log(blogposts);
-        res.render('homepage', { blogposts, logged_in: req.session.logged_in });
+        res.render('dashboard', { blogposts, logged_in: req.session.logged_in });
 
     } catch (err) {
         res.status(500).json(err);

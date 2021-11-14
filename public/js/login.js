@@ -7,15 +7,19 @@ const loginFormEvent = async function(e) {
 // Only if both values exist
     // Then send the values to the server
         // Make a fetch request to userRoutes/login (Which will GET input values, compare hashedPass to Regular and send Flag back of LOGGED_IN)
-        console.log(email);
-        console.log(pass);
+
         const response = await fetch('/api/users/login', { 
-            method: 'POST', // The method of the fetch request, is a POST,
-            body: JSON.stringify({ // body content as JSON stringified Object {email, pass}
-                email: email,
-                pass: pass, 
-                }), 
-            header: { 'Content-Type': 'application/json' }, // send along the content type in the header
+            method: "POST",
+        body: JSON.stringify({
+            "email": email,
+            "pass": pass
+        }),
+        headers: { 
+            "Content-Type": "application/json",
+        }
+         // send along the content type in the header
+        
+            // "Accept": "application/json", 
         });
     if (response.ok) { // After we get a response from userRoutes, 
         // success = Refresh page. Because we now have a logged_in flag added to the session (sequelize database), that will render the homepage differently. 
