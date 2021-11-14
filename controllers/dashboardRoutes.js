@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const { Blogost, User, Comment } = require('../models');
+const { Blogpost, User, Comment } = require('../models');
+const sequelize = require('../config/connection');
 const userAuth = require('../utils/auth');
 // GET - Find All POSTS from Current User 
 // POST - Create new blogpost Route Handler
@@ -15,9 +16,18 @@ const userAuth = require('../utils/auth');
 
 
 // DELETE - Destroy a Post Route Handler
+// try {
 
-router.get('/', userAuth, (req, res) => {
-    Blogpost.findAll({
+        // } catch (err) {
+        //     console.log(err);
+        //     res.status(500).json(err);
+        // }
+
+
+// Get all User Blogposts 
+router.get('/', userAuth, async (req, res) => {
+    try {
+        const dashboardData = await Blogpost.findAll({
             where: {
                 user_id: req.session.user_id
             },
@@ -40,57 +50,54 @@ router.get('/', userAuth, (req, res) => {
                     attributes: ['name']
                 }
             ]
-        })
-        .then(postData => {
-            const posts = postData.map(post => post.get({ plain: true }));
-            res.render('dashboard', { posts, loggedIn: true });
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
         });
+        const blogposts = dashboardData.map(el => el.get({ plain: true }));
+        res.render('dashboard', { blogposts, logged_in: req.session.logged_in });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
 });
-router.get('/edit/:id', userAuth, (req, res) => {
-    Blogpost.findOne({
-            where: {
-                id: req.params.id
-            },
-            attributes: ['id',
-                'title',
-                'content',
-                'created_at'
-            ],
-            include: [{
-                    model: User,
-                    attributes: ['name']
-                },
-                {
-                    model: Comment,
-                    attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-                    include: {
-                        model: User,
-                        attributes: ['name']
-                    }
-                }
-            ]
-        })
-        .then(postData => {
-            if (!postData) {
-                res.status(404).json({ message: 'No post found with this id' });
-                return;
-            }
 
-            const post = postData.get({ plain: true });
-            res.render('edit-post', { post, loggedIn: true });
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-})
-router.get('/new', (req, res) => {
-    res.render('new-post');
-});
+// router.get('/edit/:id', userAuth, (req, res) => {
+//     Blogpost.findOne({
+//             where: {
+//                 id: req.params.id
+//             },
+//             attributes: ['id',
+//                 'title',
+//                 'content',
+//                 'created_at'
+//             ],
+//             include: [{
+//                     model: User,
+//                     attributes: ['name']
+//                 },
+//                 {
+//                     model: Comment,
+//                     attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+//                     include: {
+//                         model: User,
+//                         attributes: ['name']
+//                     }
+//                 }
+//             ]
+//         })
+//         .then(postData => {
+//             if (!postData) {
+//                 res.status(404).json({ message: 'No post found with this id' });
+//                 return;
+//             }
+
+//             const post = postData.get({ plain: true });
+//             res.render('edit-post', { post, loggedIn: true });
+//         })
+//         .catch(err => {
+//             console.log(err);
+//             res.status(500).json(err);
+//         });
+// })
+
 
 
 

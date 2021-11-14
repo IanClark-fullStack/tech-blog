@@ -1,7 +1,7 @@
 
 const router = require('express').Router();
 const { User, Blogpost, Comment } = require('../../models');
-
+const userAuth = require('../../utils/auth');
 
 // Main.handlebars Login link > homeRoutes /login route > Renders Login Form > Or signup link routes back to homeRoutes /signup > renders Signup Form with Event Listener attached > Send Fetch request to /api/users endpoint. 
 
@@ -94,7 +94,7 @@ router.get('/:id', async (req, res) => {
 
 // Main.handlebars Login link > homeRoutes /login route > Renders Login Form > Or signup link routes back to homeRoutes /signup > renders Login Form with Event Listener attached > Fetch to /api/users/login
 // Where '/api/users/login === '/login'
-router.post('/login', async (req, res) => {
+router.post('/login', userAuth, async (req, res) => {
     
     try {
         console.log(req.body);
@@ -114,13 +114,17 @@ router.post('/login', async (req, res) => {
             res.status(400).json({ message: 'Incorrect password!' });
             return;
         }
-
+        console.log(userData);
         req.session.save(() => {
             req.session.user_id = userData.id;
-            req.session.email = userData.email;
+            req.session.name = userData.name;
             req.session.logged_in = true;
+            // Moved Res Json inside sess.save 
+            res.json({ user: userData, message: 'You are now logged in!' });
+            console.log(req.session);
         });
-        res.json({ user: userData, message: 'You are now logged in!' });
+        
+        
     } catch (err) {
         console.log(err);
             res.status(500).json(err);
@@ -192,14 +196,14 @@ router.delete('/:id', async (req, res) => {
 
 router.post('/logout', (req, res) => {
     console.log('hit logout')
-    console.log(req.session.logged_in); // 3rd
-    // if (req.session.logged_in) {
-    //     req.session.destroy(() => {
-    //         res.status(204).end();
-    //     // });
-    // } else {
-    //     res.status(404).end();
-    // }
+    console.log(req.session); // 3rd BACK TO UPDATE
+    if (req.session.logged_in) {
+        req.session.destroy(() => {
+            res.status(204).end();
+         });
+    } else {
+        res.status(404).end();
+    }
 });
 
 module.exports = router;

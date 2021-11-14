@@ -18,43 +18,37 @@
                         <button class="py-3 px-6 font-mono bg-yellow text-blue-600">Home</button>
                     </a>
                 </li>
-            {{#unless logged_in}}
-                <li> 
-                    <!-- Handled by homeRoutes, where the response is to render the login/signup handlebars file to the page -->
-                    <a href="/login"><button class="py-3 px-6 font-mono bg-yellow text-blue-600">Login</button></a>
-                </li>
-            {{/unless}}
                 <li>
-                    {{!-- Dash Needs Event Handler and Route --}}
                     <a href="/dashboard">
                         <button class="py-3 px-6 font-mono bg-yellow text-blue-600">Dashboard</button>
                     </a>
                 </li>
+        {{#if logged_in}}
+        <h2>Main Recieved logged_in</h2>
+        {{else}}
+        <h6>Main Else, did not recieve logged_in</h6>
+        {{/if}}
                 <li class="dub-logout-inner">
-                    <button id="logout-button" class="py-3 px-6 font-mono bg-yellow text-blue-600">Logout</button>
+                    <a href="/"><button id="logout-button" class="py-3 px-6 font-mono bg-yellow text-blue-600">Logout</button></a>
                 </li>
-            
-            
-                <li>
-                    {{login}}
+        
+                <li>  <!-- Handled by homeRoutes, where the response is to render the login/signup handlebars file to the page -->
+                    <a href="/login"><button class="py-3 px-6 font-mono bg-yellow text-blue-600">Login</button></a>
                 </li>
                 <li>
                     <a href="/signup">
                         <button class="py-3 px-6 font-mono bg-yellow text-blue-600">Sign Up</button>
                     </a>
                 </li>
-            
+        
             </ul>
-        </nav>
-        <h1 class="font-mono text-6xl text-center uppercase py-16">
-            uNaNalyzed 
-        </h1>
+        </nav> 
     </header>
 
     <main>
         {{{body}}}
     </main>
-        
+
 <script src="/js/logout.js"></script>
 {{!-- <script src="/js/home.js"></script> --}}
 </body>

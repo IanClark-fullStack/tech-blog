@@ -1,54 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Blog</title>
-    {{!-- DO NOT FORGET to PURGE all unused CSS before deployment --}}
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-    <header>
-        <nav class="flex justify-between p-10">
-            {{#each blogposts as |user| }}
-        <h3 class="text-4xl font-sans">{{user.title}}</h3>
-        <h3 class="text-4xl font-sans">Extra Sanity</h3>
-        <small class="text-xsm font-mono">{{user.name}} | {{user.post_date}}</small>
-        <article class="text-left font-sans leading-6">{{user.post_body}}></article>
-        {{/each}}
+<h1>Rendering Dash</h1>
+        {{#if blogposts.length}}
+          <small class="text-xsm font-mono">Rendered if blogposts have a length</small>
+            {{#each blogposts as |post| }}
+            <h3 class="text-4xl font-sans">{{user.title}}</h3>
+            <h3 class="text-4xl font-sans">Rendered by each blogposts</h3>
+            {{> dash-posts }}
+            <small class="text-xsm font-mono">{{user.name}} | {{user.post_date}}</small>
+            <article class="text-left font-sans leading-6">{{user.post_body}}>
+                <h1 class="font-mono text-6xl text-center py-16"></h1>
+            </article>
+            {{/each}}
             {{!-- Optimization :: Partial Implementation --}}
-            <ul class="dub-logout list-none">
-                <li class="dub-logout-inner">
-                    <a href="/">
-                        <button class="py-3 px-6 font-mono bg-yellow text-blue-600">
-                            Home
-                        </button>
-                    </a>
-                </li>
-            {{#if logged_in}}
-                <li class="dub-logout-inner">
-                    <a href="/dashboard">
-                        <button class="py-3 px-6 font-mono bg-yellow text-blue-600">Dashboard</button>
-                    </a>
-                </li>
-                <li class="dub-logout-inner">
-                    <button class="py-3 px-6 font-mono bg-yellow text-blue-600">Logout</button>
-                </li>
-            {{/if}}
-            </ul>
-        </nav>
-        <h1 class="font-mono text-6xl text-center py-16">
-            Dashboard
-        </h1>
-    </header>
-
-        <main>
-           
-        </main>
-        
-{{#if logged_in}}
-<script src="/js/logout.js"></script>
-{{/if}}
-</body>
-</html>
+       

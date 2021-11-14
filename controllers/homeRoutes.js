@@ -25,7 +25,9 @@ router.get('/', async (req, res) => {
         // Map over users array and serialize data 
         const blogposts = userLoginData.map(el => el.get({ plain: true}));
         console.log(blogposts);
-        res.render('dashboard', { blogposts, logged_in: req.session.logged_in });
+        res.render('homepage', { blogposts, logged_in: req.session.logged_in });
+        // Render dash?
+        
 
     } catch (err) {
         res.status(500).json(err);
@@ -33,7 +35,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-    if (req.session.loggedIn) {
+    if (req.session.logged_in) {
         res.redirect('/');
         return;
     }

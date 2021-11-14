@@ -21,8 +21,8 @@ const PORT = process.env.PORT || 3001;
 // Create the express handlebars - To Pass Helper functions in use { helpers } as the argument. 
 const hbs = exphbs.create();
 // bodyParser? for fetch login route 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Attach a Defined session storage object to the sequalize Store 
 const sess = {
