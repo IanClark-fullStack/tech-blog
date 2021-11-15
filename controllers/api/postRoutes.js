@@ -19,6 +19,31 @@ router.post('/add', userAuth, async (req, res) => {
     }
 })
 
+router.put('/:id', userAuth, async (req, res) => {
+    try {
+        const postData = await Blogpost.update({
+            title: req.body.title, 
+            blogpost_body: req.body.blogpost_body
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        }); 
+        if (!postData) {
+            res.status(404).json({ message: 'No post found with ID' })
+        }
+        res.json(postData);
+
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+})
+
+
+
 // Find One Post 
 router.get('/:id', async (req, res) => {
     try {

@@ -68,20 +68,22 @@ router.get('/:id', async (req, res) => {
 // }
 
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     try {
         console.log(req.body);
-        // const userBirth = User.create({
-        //     name: req.body.name,
-        //     pass: req.body.pass
-        // })
-        // req.session.save(() => {
-        //     req.session.user_id = userBirth.id;
-        //     req.session.name = userBirth.name;
-        //     req.session.logged_in = true;
+        const userBirth = await User.create({
+            name: req.body.name,
+            email: req.body.email,
+            pass: req.body.pass
+        });
 
-        //     res.json(userBirth);
-        // });
+        req.session.save(() => {
+            req.session.user_id = userBirth.id;
+            req.session.name = userBirth.name;
+            req.session.logged_in = true;
+
+            res.json(userBirth);
+        });
 
     } catch (err) {
         console.log(err);

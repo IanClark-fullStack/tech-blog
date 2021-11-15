@@ -20,8 +20,44 @@ router.get('/add', async (req, res) => {
         } 
 });
 
-router.get('/edit/:id', async (req, res) => {
+router.get('/edit/:id', userAuth, async (req, res) => {
     try {
+        const postData = await Blogpost.findOne({
+            where: {
+                id: req.params.id,
+            },
+            attributes: [
+                'id', 
+                'post_body',
+                'title',
+                'date'
+            ], 
+            include: [
+                {
+                    model: User,
+                    attributes: ['name']
+                },
+                {
+                    model: Comment,
+                    attributes: [
+                        'id',
+                        'content',
+                        'blogpost_id', 
+                        'user_id', 
+                        'date'
+                    ],
+                    include: {
+                        model: User,
+                        attributes: ['name']
+                    }
+                }
+            ]
+        });
+        if (!postData) {
+            res.status(404).json({ message: 'No post found' });
+        }
+        const blogpost = postData.get({ plain: true });
+        res.render('edit-post', { blogpost, logged_in: true });
 
     } catch (err) {
         console.log(err);

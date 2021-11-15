@@ -17,17 +17,16 @@ const signupFormHandler = async function(e) {
     // const entryStrings = JSON.stringify(entryData); 
     // console.log(entryStrings);
 
-    const response = await fetch('/api/users/signup', 
+    const response = await fetch('/api/users/', 
     { // Where /api/users === '/'
         method: 'POST',
         body: JSON.stringify({
             name: name,
             email: email,
-            pass: pass
+            pass: pass,
         }),
         headers: { 
             'Content-Type': 'application/json',
-            "Accept": "application/json",
         },
         
     
