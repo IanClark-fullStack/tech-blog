@@ -3,7 +3,7 @@
         <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">Create a new post</h2>
          <p class="leading-relaxed mb-5 text-gray-600">Add your post content Here</p>
         <form id="newpost-form" class="flex md:flex-no-wrap flex-wrap justify-center md:justify-start">
-            <input id="newpost-title" type="hidden" name="blogpost_id" value="{{blogpost.id}}"/>
+            <input id="newpost-id" type="hidden" name="blogpost_id" value="{{blogpost.id}}"/>
                 <input id="newpost-title" type="text" name="blogpost-title" class="bg-white rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4" placeholder="Post Title" type="text">
             
                 <textarea class="bg-white rounded border border-gray-400 focus:outline-none h-32 focus:border-indigo-500 text-base px-4 py-2 mb-4 resize-none" placeholder="Post Content" id="newpost-body" name="blogpost-body"></textarea>

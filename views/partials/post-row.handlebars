@@ -1,9 +1,12 @@
-<article class="text-left font-sans leading-6">
-    <h6 class="text-4xl font-sans">Each posts partial</h6>
-    <h3 class="text-4xl font-sans">{{post.title}}</h3>
-    <small class="text-xsm font-mono">{{post.name}} | {{post.post_date}}</small>
-    <p id="sanity" class="py-4"> {{post_body}}</p>
+<div class="p-10 md:flex md:space-x-8 space-y-4 md:space-y-0">
+    <div class="flex-grow bg-white p-2">
+        <h3 class="text-4xl font-sans">{{title}}</h3>
+    </div>
+    <div class="flex-grow bg-blue p-2">
+        <small class="text-xsm font-mono">{{name}} | {{date}}</small>
+        <p id="sanity" class="py-4"> {{post_body}}</p>
         <ul>
             <li>{{user.name}}</li>
-        </ul>   
-</article>
+        </ul>
+    </div>
+</div>

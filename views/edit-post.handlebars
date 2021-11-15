@@ -8,7 +8,7 @@
             <input id="post-id" type="hidden" name="blogpost_id" value="{{blogpost.id}}"/>
                 <input id="editpost-title" type="text" name="blogpost-title" class="bg-white rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4" type="text" value="{{blogpost.title}}">
             
-                <textarea class="bg-white rounded border border-gray-400 focus:outline-none h-32 focus:border-indigo-500 text-base px-4 py-2 mb-4 resize-none" id="newpost-body" name="blogpost-body">{{blogpost.post_body}} </textarea>
+                <textarea id="editpost-content" class="bg-white rounded border border-gray-400 focus:outline-none h-32 focus:border-indigo-500 text-base px-4 py-2 mb-4 resize-none" name="blogpost-body">{{blogpost.post_body}} </textarea>
             <div class="w-full">
                 <button id="editpost-button" type="submit" class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Save</button>
             </div>
