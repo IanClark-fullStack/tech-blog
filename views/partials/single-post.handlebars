@@ -1,0 +1,24 @@
+
+    <div class="bg-white p-2">
+        <div class="py-4 border-b-2 border-black">
+            <a href="/post/{{singlePost.id}}"><h3 class="text-5xl font-mono">{{singlePost.title}}</h3></a>
+        </div>
+        
+        <small class="text-xsm font-mono">{{singlePost.user.name}} | {{singlePost.date}}</small>
+        <p id="sanity" class="py-4"> {{singlePost.post_body}}</p>
+        <ul>
+            <li class="py-2 border-b-2 border-grey-200">{{singlePost.comments.length}} Comments</li>
+            {{#each singlePost.comments as |comment|}}
+            <li>{{comment.content}}</li>
+            {{/each}}
+            <li>{{singlePost.comments.length}} Comments</li>
+        </ul>
+        <p id="sanity" class="py-4"> {{singlePost.commments.date}}</p>
+    </div>
+    <div class="flex-grow bg-blue p-2">
+        
+        
+        <small class="text-xsm font-mono">COMMENTS: {{singlePost.comments.length}}</small>
+        
+    </div>
+    

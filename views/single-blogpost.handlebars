@@ -1,19 +1,20 @@
+<div class="py-10 w-2/3 mx-auto md:flex md:space-x-8 space-y-4 md:space-y-0">
+    
+    {{> single-post }}
+     
+</div>
+
 <div class="w-1/3">
     <div id="post-header" class="justify-center items-center">
-        <h4 class="font-mono text-center text-4xl">Login: rendered by homeRoutes</h4>
-        <h4 class="font-mono text-center text-4xl"><a href="/blogpost/{{blogpost.id}}"</a>{{blogpost.title}}</a></h4>
-        <small>By: {{blogpost.user.name}} at {{user.blogpost.date}}</small>
+        <h4 class="font-mono text-center text-4xl">Add a comment</h4>
+       
+        
     </div>
-    <div class="text-md">
-        <p class="leading-md">
-            {{user.name}}
-        </p>
-    </div>
-    <form class="py-16">
-        <label class="text-sm">Comment</label>
-            <textarea id="post-comment" class="py-4"></textarea>
-
-            <button id="official-comment" type="submit" class="bg-blue-500 text-white">Submit</button>
+    <form class="flex md:flex-no-wrap flex-wrap justify-center md:justify-start w-full px-28">
+        <textarea id="comment-content" class="bg-white w-full rounded border border-gray-400 focus:outline-none h-32 focus:border-indigo-500 text-base px-4 py-2 mb-4 resize-none"></textarea>
+        <div class="w-full">
+            <button id="editpost-button" type="submit" class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Save</button>
+        </div>
         
     </form>
 

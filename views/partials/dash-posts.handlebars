@@ -1,11 +1,22 @@
-<article class="text-left font-sans leading-6">
-    <h1 class="font-mono text-6xl text-center py-16"></h1>
-            
-    <small class="text-xsm font-mono">{{user.name}} | {{date}}</small>
-    <p>
-        {{post_body}}
-    </p>
-            
-    <small class="text-xsm font-mono">Rendered through dash-posts partial</small>
-    <a href="/dashboard/edit/{{id}}">{{title}}</a>
-</article>
+
+<div class="p-10 md:flex md:space-x-8 space-y-4 md:space-y-0">
+    <div class="flex-grow bg-white p-2">
+        <a class="hover:underline" href="/dashboard/edit/{{id}}">
+            <h3 class="text-4xl font-sans">{{title}}</h3>
+        </a>
+    </div>
+    <div class="flex-grow bg-blue p-2">
+        <small class="text-xsm font-mono">by {{user.name}} | {{date}}</small>
+        <ul>
+            <li>
+                
+            </li>
+            <li>
+                <small class="text-xsm font-mono">Rendered through dash-posts partial</small>
+            </li>
+            <li>
+                <p id="sanity" class="py-4">{{post_body}}</p>
+            </li> 
+        </ul>
+    </div>
+</div>

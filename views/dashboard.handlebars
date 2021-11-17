@@ -1,14 +1,20 @@
-<h1>{{user.name}} Post History</h1>
-<a href="dashboard/add">
-    <button class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-sm">Create a new post</button>
-</a>
-        {{#if blogposts.length}}
-          <small class="text-xsm font-mono">Rendered if blogposts have a length</small>
+{{#if blogposts.length}}
+  <div class="p-10 md:flex md:space-x-8 space-y-4 md:space-y-0">
+    <div class="flex-row bg-white p-2">
+      <h1 class="text-4xl font-mono">Post History</h1>
+    </div>
+    <div class="flex items-end bg-white p-2">
+        <a href="dashboard/add">
+          <button class="text-white text-2xl font-mono bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-sm">+</button>
+        </a>
+    </div>
+  </div>
 
-            {{#each blogposts as |post| }}
-            
-            {{> dash-posts }}
-            
-            {{/each}}
-         
-        {{/if}}
+  {{#each blogposts as |post| }}
+  
+  {{> dash-posts }}
+  
+  {{/each}}
+
+{{/if}}
+      

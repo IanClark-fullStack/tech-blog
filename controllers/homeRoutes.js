@@ -68,15 +68,17 @@ router.get('/post/:id', async (req, res) => {
                     model: User,
                     attributes: ['name']
                 }
-            ]
+            ],
         })
         if (!postData) {
             res.status(404).json({ message: 'No post found with this id' });
             return;
         }
         const singlePost = postData.get({ plain: true });
-        res.render('single-post', { singlePost, logged_in: req.session.logged_in });
-
+        const commentData = singlePost.comments.map(el => el.content);
+        console.log(commentData);
+        res.render('single-blogpost', { singlePost, commentData, logged_in: req.session.logged_in });
+    
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
@@ -84,43 +86,43 @@ router.get('/post/:id', async (req, res) => {
 });
 
 
-// router.get('/posts-comments', async (req, res) => {
-//     try {
-//         const postData = await Blogpost.findOne({
-//             where: {
-//                 id: req.params.id
-//             },
-//             attributes: [
-//                 'id',
-//                 'content',
-//                 'title',
-//                 'date'
-//             ],
-//             include: [{
-//                     model: Comment,
-//                     attributes: ['id', 'content', 'blogpost_id', 'user_id', 'date'],
-//                     include: {
-//                         model: User,
-//                         attributes: ['name']
-//                     }
-//                 },
-//                 {
-//                     model: User,
-//                     attributes: ['name']
-//                 }
-//             ]
-//         })
-//         if (!postData) {
-//             res.status(404).json({ message: 'No post found with this id' });
-//             return;
-//         }
-//         const post = dbPostData.get({ plain: true });
+router.get('/posts-comments', async (req, res) => {
+    try {
+        const postData = await Comment.findAll({
+            where: {
+                blogpost_id: req.params.id
+            },
+            attributes: [
+                'id',
+                'content',
+                'title',
+                'date'
+            ],
+            include: [{
+                    model: Comment,
+                    attributes: ['id', 'content', 'blogpost_id', 'user_id', 'date'],
+                    include: {
+                        model: User,
+                        attributes: ['name']
+                    }
+                },
+                {
+                    model: User,
+                    attributes: ['name']
+                }
+            ]
+        })
+        if (!postData) {
+            res.status(404).json({ message: 'No post found with this id' });
+            return;
+        }
+        const post = dbPostData.get({ plain: true });
 
-//         res.render('posts-comments', { post, logged_in: req.session.logged_in });
-//     } catch (err) {
-//         console.log(err);
-//         res.status(500).json(err);
-//     }   
-// });
+        res.render('single-blogpost', { post, logged_in: req.session.logged_in });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }   
+});
 
 module.exports = router;

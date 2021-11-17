@@ -21,12 +21,16 @@ router.post('/add', userAuth, async (req, res) => {
 
 router.put('/:id', userAuth, async (req, res) => {
     try {
-        const postData = await Blogpost.update(req.body, {
-            where: {
-                id: req.params.id
-            }
-            
-        }); 
+        console.log(req.body);
+        const postData = await Blogpost.update({
+                title: req.body.title,
+                post_body: req.body.post_body,
+            },
+            {
+                where: {
+                    id: req.params.id
+                }
+            }); 
         if (!postData) {
             res.status(404).json({ message: 'No post found with ID' })
         }

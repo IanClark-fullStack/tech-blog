@@ -1,12 +1,13 @@
-<div class="p-10 md:flex md:space-x-8 space-y-4 md:space-y-0">
-    <div class="flex-grow bg-white p-2">
-        <h3 class="text-4xl font-sans">{{title}}</h3>
+<div class="p-10 md:space-x-8 space-y-4 md:space-y-0">
+    <div class="flex-row bg-white border-black ml-4 p-2">
+        <a href="/post/{{id}}"><h3 class="text-4xl font-sans">{{title}}</h3></a>
     </div>
-    <div class="flex-grow bg-blue p-2">
+    <div class="flex-row bg-blue p-2">
         <small class="text-xsm font-mono">{{name}} | {{date}}</small>
         <p id="sanity" class="py-4"> {{post_body}}</p>
         <ul>
             <li>{{user.name}}</li>
         </ul>
     </div>
+    
 </div>

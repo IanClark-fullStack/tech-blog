@@ -2,18 +2,18 @@ const editPostFormHandler = async (e) => {
     e.preventDefault();
     
         const title = document.getElementById('editpost-title').value;
-        const blogpost_body = document.getElementById('editpost-content').value;
+        const post_body = document.getElementById('editpost-content').value;
         // Grab the idea directly from the browser URL bar. 
         const id = window.location.toString().split('/')[
             window.location.toString().split('/').length -1
         ];
 
         const response = await fetch(`/api/posts/${id}`, {
-            method: 'POST',
+            method: 'PUT',
             body: JSON.stringify({
                 id: id, 
                 title,
-                blogpost_body
+                post_body
             }),
             headers: {
                 'Content-type': 'application/json'
