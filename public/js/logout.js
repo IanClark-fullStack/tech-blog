@@ -1,9 +1,9 @@
 const logoutHandler = async () => {
+  // e.preventDefault();
     // Make a POST request to destroy the session on the back end
-    async function logout() {
       const response = await fetch('/api/users/logout', {
-        method: 'post',
-        headers: { 'Content-Type': 'application/json' }
+        method: "POST",
+        headers: { "Content-Type": "application/json" }
       });
     
       if (response.ok) {
@@ -11,7 +11,8 @@ const logoutHandler = async () => {
       } else {
         alert(response.statusText);
       }
-    }
-  };
+    };
   
-document.querySelector('#logout-button').addEventListener('click', logoutHandler);
+const fixLogoutPlease = document.getElementById('logout-button');
+console.log(fixLogoutPlease);
+fixLogoutPlease.addEventListener("click", logoutHandler);

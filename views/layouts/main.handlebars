@@ -24,15 +24,11 @@
                     </a>
                 </li>
         {{#if logged_in}}
-        <h2>Main Recieved logged_in</h2>
+        <li class="dub-logout-inner">
+                <button id="logout-button" class="py-3 px-6 font-mono bg-yellow text-blue-600">Logout</button>
+        </li>
         {{else}}
-        <h6>Main Else, did not recieve logged_in</h6>
-        {{/if}}
-                <li class="dub-logout-inner">
-                    <a href="/"><button id="logout-button" class="py-3 px-6 font-mono bg-yellow text-blue-600">Logout</button></a>
-                </li>
-        
-                <li>  <!-- Handled by homeRoutes, where the response is to render the login/signup handlebars file to the page -->
+        <li>  <!-- Handled by homeRoutes, where the response is to render the login/signup handlebars file to the page -->
                     <a href="/login"><button class="py-3 px-6 font-mono bg-yellow text-blue-600">Login</button></a>
                 </li>
                 <li>
@@ -40,6 +36,10 @@
                         <button class="py-3 px-6 font-mono bg-yellow text-blue-600">Sign Up</button>
                     </a>
                 </li>
+        {{/if}}
+                
+        
+                
         
             </ul>
         </nav> 
@@ -48,8 +48,9 @@
     <main>
         {{{body}}}
     </main>
-
+{{#if logged_in}}
 <script src="/js/logout.js"></script>
+ {{/if}}
 {{!-- <script src="/js/home.js"></script> --}}
 </body>
 </html>
