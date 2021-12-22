@@ -9,16 +9,15 @@
   * [Description](#description)
   * [Installation](#installation)
   * [Usage](#usage)
-  * [Tests](#tests)
   * [Questions & Contributions](#questions-contribute)
-  * [Credits](#credits)
-  * [Licenses](#licenses)
 
 ## Description 
 ----- 
 CMS blog, WordPress / Medium style  full stack application. 
 
 Users who sign up and login to the site can subsequently view all published blog posts, add comments, and publish their own content. 
+
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) ![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=Sequelize&logoColor=white) ![NPM](https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white) ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
 ## Installation 
 ---- 
@@ -46,8 +45,8 @@ be sure to create a ".dotenv" file to hide credentials as you wish.
 Open your browser and navigate to localhost:3001, where you will be prompted to login or signup. 
 
 The rest is easy!
-![image.png](https://boostnote.io/api/teams/XQfj9qnTA/files/74f54aa95fa92f3f899f9cf2de21c37dd662066a72a98d69f2d3a29cb37b39c6-image.png)
-![image.png](https://boostnote.io/api/teams/XQfj9qnTA/files/70b3f566d815dd3d1debcf0558e20a0919a462e24e326d6139b6a00d1fa435ca-image.png)
+![image](https://user-images.githubusercontent.com/90655370/142331372-64f6d41b-fbc4-496e-9b66-fa060e830d1e.png)
+![image](https://user-images.githubusercontent.com/90655370/142330772-6e870442-49e0-4880-b053-382b99f01b51.png)
 
 
 ## Questions & Contact 
@@ -55,24 +54,3 @@ The rest is easy!
 Reach out 
 ianclark@gmail.com
 
-##
-_________
-
-```flow
-st=>start: Start
-op=>operation: ABC
-cond=>condition: Yes or No?
-e=>end
-
-st->op->cond
-cond(yes)->e
-cond(no)->op
-```
-
-```mermaid
-graph LR
-A[ABC] -->B(DEF)
-B --> C{GHI}
-C -->|JKL| D[MNO]
- C -->|PQR| E[STU]
-```
