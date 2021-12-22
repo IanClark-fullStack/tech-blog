@@ -35,7 +35,7 @@ const signupFormHandler = async function(e) {
     if (response.ok) {
         document.location.replace('/dashboard'); 
     } else {
-        alert('Signup Sucks');
+        alert('Something went wrong. Try again');
     }
 }; 
 document.getElementById('signup-form').addEventListener('submit', signupFormHandler);
