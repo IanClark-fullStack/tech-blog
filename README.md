@@ -14,6 +14,7 @@
 ## Description 
 ----- 
 CMS blog, WordPress / Medium style  full stack application. 
+![Deployed on Heroku](https://radiant-headland-18315.herokuapp.com/)
 
 Users who sign up and login to the site can subsequently view all published blog posts, add comments, and publish their own content. 
 
